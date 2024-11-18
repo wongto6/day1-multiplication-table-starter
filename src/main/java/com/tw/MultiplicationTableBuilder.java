@@ -19,6 +19,10 @@ public class MultiplicationTableBuilder {
         return multiplicationTable;
     }
 
+    public String generateMultiplicationColumn(int row, int column) {
+        return String.format(" %s*%s=%s", column, row, row * column);
+    }
+
     public boolean validateInput(int startInt, int endInt) {
         boolean isValidStartEnd = validateStartEnd(startInt, endInt);
         boolean isInputScaleValid = validateInputScale(startInt, endInt);
