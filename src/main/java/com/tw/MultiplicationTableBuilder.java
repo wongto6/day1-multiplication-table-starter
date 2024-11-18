@@ -15,6 +15,17 @@ public class MultiplicationTableBuilder {
 
         String multiplicationTable = "";
 
+        boolean isInputValid = validateInput(startInt, endInt);
+
+        if (isInputValid) {
+            for (int row = startInt; row <= endInt; row++) {
+                String multiplicationRow = generateMultiplicationRow(row, startInt);
+                multiplicationTable = multiplicationTable + multiplicationRow + System.lineSeparator();
+            }
+            multiplicationTable = String.format(multiplicationTable);
+        } else {
+            return null;
+        }
 
         return multiplicationTable;
     }
