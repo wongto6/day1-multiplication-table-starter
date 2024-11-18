@@ -19,6 +19,14 @@ public class MultiplicationTableBuilder {
         return multiplicationTable;
     }
 
+    public String generateMultiplicationRow(int row, int startInt) {
+        String multiplicationRow = "";
+        for (int column = startInt; column <= row; column++) {
+            multiplicationRow = multiplicationRow + generateMultiplicationColumn(row, column);
+        }
+        return multiplicationRow.substring(1);
+    }
+
     public String generateMultiplicationColumn(int row, int column) {
         return String.format(" %s*%s=%s", column, row, row * column);
     }
