@@ -19,6 +19,12 @@ public class MultiplicationTableBuilder {
         return multiplicationTable;
     }
 
+    public boolean validateInput(int startInt, int endInt) {
+        boolean isValidStartEnd = validateStartEnd(startInt, endInt);
+        boolean isInputScaleValid = validateInputScale(startInt, endInt);
+        return (isValidStartEnd && isInputScaleValid);
+    }
+
     public boolean validateInputScale(int startInt, int endInt) {
         return (endInt >= startInt);
     }
