@@ -2,6 +2,9 @@ package com.tw;
 
 public class MultiplicationTableBuilder {
 
+    final int MIN_VALUE = 1;
+    final int MAX_VALUE = 1000;
+
     public static void main(String[] args) {
         MultiplicationTableBuilder builder = new MultiplicationTableBuilder();
         int start = 2;
@@ -13,27 +16,27 @@ public class MultiplicationTableBuilder {
 
     public String generateMultiplicationTable(int startInt, int endInt) {
 
-        String multiplicationTable = "";
+        StringBuilder multiplicationTable = new StringBuilder();
 
+        // can directly return validate result
         boolean isInputValid = validateInput(startInt, endInt);
-
-        if (isInputValid) {
-            for (int row = startInt; row <= endInt; row++) {
-                String multiplicationRow = generateMultiplicationRow(row, startInt);
-                multiplicationTable = multiplicationTable + multiplicationRow + System.lineSeparator();
-            }
-            multiplicationTable = String.format(multiplicationTable);
-        } else {
+        if (!isInputValid) {
             return null;
         }
 
-        return multiplicationTable;
+        for (int row = startInt; row <= endInt; row++) {
+            String multiplicationRow = generateMultiplicationRow(row, startInt);
+            multiplicationTable.append(multiplicationRow).append(System.lineSeparator());
+        }
+
+        return multiplicationTable.toString();
     }
 
     public String generateMultiplicationRow(int row, int startInt) {
-        String multiplicationRow = "";
+        StringBuilder multiplicationRow = new StringBuilder();
         for (int column = startInt; column <= row; column++) {
-            multiplicationRow = multiplicationRow + generateMultiplicationColumn(row, column);
+            // use StringBuilder to replace + operator
+            multiplicationRow.append(generateMultiplicationColumn(row, column));
         }
         return multiplicationRow.substring(1);
     }
@@ -53,6 +56,6 @@ public class MultiplicationTableBuilder {
     }
 
     public boolean validateStartEnd(int startInt, int endInt) {
-        return (startInt > 1 && startInt <= 1000) && (endInt > 1 && endInt <= 1000);
+        return (startInt > MIN_VALUE && startInt <= MAX_VALUE) && (endInt > MIN_VALUE && endInt <= MAX_VALUE);
     }
 }
